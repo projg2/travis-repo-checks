@@ -14,6 +14,8 @@ elif [[ ${JOB} == global ]]; then
 	pcheck -r /usr/portage --reporter FancyReporter \
 		-c UnusedGlobalFlags -c UnusedLicense
 else
+	# keep the category scan silent, it's so loud...
+	set +x
 	cx=0
 	cats=()
 	for c in $(<profiles/categories); do
@@ -21,6 +23,8 @@ else
 			cats+=( "${c}/*" )
 		fi
 	done
+	set -x
+
 	pcheck -r /usr/portage --reporter FancyReporter "${cats[@]}" \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
 		--profile-disable-dev --profile-disable-exp
