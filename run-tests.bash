@@ -25,9 +25,13 @@ else
 	done
 	set -x
 
-	pcheck -r /usr/portage --reporter FancyReporter "${cats[@]}" \
-		-d imlate -d unstable_only -d cleanup -d stale_unstable \
-		--profile-disable-dev --profile-disable-exp
+	set -- "${cats[@]}"
+	while [[ -n ${@} ]]; do
+		pcheck -r /usr/portage --reporter FancyReporter "${@:0:8}" \
+			-d imlate -d unstable_only -d cleanup -d stale_unstable \
+			--profile-disable-dev --profile-disable-exp
+		shift 8 || break
+	done
 fi |& awk -f "$(dirname "${0}")"/parse-pcheck-output.awk
 
 [[ ${PIPESTATUS[0]} ]]
