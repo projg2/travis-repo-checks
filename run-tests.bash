@@ -27,7 +27,7 @@ else
 
 	set -- "${cats[@]}"
 	while [[ -n ${@} ]]; do
-		pcheck -r /usr/portage --reporter FancyReporter "${@:0:8}" \
+		pcheck -r /usr/portage --reporter FancyReporter "${@:1:8}" \
 			-d imlate -d unstable_only -d cleanup -d stale_unstable \
 			--profile-disable-dev --profile-disable-exp
 		shift 8 || break
