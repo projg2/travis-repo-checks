@@ -2,7 +2,7 @@ BEGIN { ret = 0; }
 
 /NonsolvableDeps|IUSEMetadataReport|LicenseMetadataReport|VisibilityReport/ {
 	ret = 1;
-	printf("%s", "\033[42m");
+	printf("%s", "\033[42m[FATAL] ");
 	print;
 	printf("%s", "\033[49m");
 	next;
