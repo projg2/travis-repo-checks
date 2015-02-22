@@ -9,7 +9,7 @@ BEGIN { ret = 0; }
 }
 
 /Killed/ {
-	ret = 2;
+	#ret = 2;
 	printf("%s", "\033[43;30m");
 	print;
 	printf("%s", "\033[49;39m");
