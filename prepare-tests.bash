@@ -17,10 +17,10 @@ echo "portage::250:portage,travis" >> /etc/group
 pip install "https://github.com/pkgcore/snakeoil/archive/master.tar.gz" \
 	--install-option="--install-headers=${VIRTUAL_ENV}/include/snakeoil"
 
-# fetch pkgcore & pkgcore-checks
+# fetch pkgcore & pkgcheck
 # their setup.py files are incompatible with pip
 wget -O - "https://github.com/pkgcore/pkgcore/archive/master.tar.gz" | tar -xz
-wget -O - "https://github.com/pkgcore/pkgcore-checks/archive/master.tar.gz" | tar -xz
+wget -O - "https://github.com/pkgcore/pkgcheck/archive/master.tar.gz" | tar -xz
 
 # install pkgcore
 cd pkgcore-master
@@ -29,8 +29,8 @@ python setup.py build_ext -I "${VIRTUAL_ENV}"/include
 python setup.py install --disable-man-pages --disable-html-docs
 cd -
 
-# install pkgcore-checks
-cd pkgcore-checks-master
+# install pkgcheck
+cd pkgcheck-master
 git init
 python setup.py install
 cd -
