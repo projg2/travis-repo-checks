@@ -34,4 +34,4 @@ else
 	done
 fi |& awk -f "$(dirname "${0}")"/parse-pcheck-output.awk
 
-[[ ${PIPESTATUS[0]} ]]
+[[ ${PIPESTATUS[0]} == 0 ]]
