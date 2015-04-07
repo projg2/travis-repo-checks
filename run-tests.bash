@@ -25,13 +25,9 @@ else
 	done
 	set -x
 
-	set -- "${cats[@]}"
-	while [[ -n ${@} ]]; do
-		pkgcheck -r gentoo --reporter FancyReporter "${@:1:8}" \
-			-d imlate -d unstable_only -d cleanup -d stale_unstable \
-			--profile-disable-dev --profile-disable-exp
-		shift 8 || break
-	done
+	pkgcheck -r gentoo --reporter FancyReporter "${cats[@]}" \
+		-d imlate -d unstable_only -d cleanup -d stale_unstable \
+		--profile-disable-dev --profile-disable-exp
 fi |& awk -f "$(dirname "${0}")"/parse-pcheck-output.awk
 
 [[ ${PIPESTATUS[0]} == 0 ]]
