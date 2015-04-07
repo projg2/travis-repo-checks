@@ -1,0 +1,16 @@
+[gentoo]
+class=pkgcore.ebuild.repository.tree
+cache=cache:gentoo
+raw_repo=raw:gentoo
+
+[cache:gentoo]
+class=pkgcore.cache.flat_hash.md5_cache
+location=@path@
+readonly=False
+
+[raw:gentoo]
+class=pkgcore.ebuild.repo_objs.RepoConfig
+default=true
+location=@path@
+
+# vim:ft=dosini

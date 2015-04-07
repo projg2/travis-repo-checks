@@ -1,16 +1,6 @@
 #!/bin/bash
 set -e -x
 
-# prepare dirs we need
-sudo mkdir -p /etc/portage /var/db/pkg
-# add write permissions to avoid too much sudo
-sudo chmod a+rwX /etc/passwd /etc/group /etc/portage /usr
-
-# create needed users & groups
-echo "portage:x:250:250:portage:/var/tmp/portage:/bin/false" >> /etc/passwd
-echo "wheel::10:${USER}" >> /etc/group
-echo "portage::250:portage,travis" >> /etc/group
-
 # install snakeoil as pkgcore dep
 # snakeoil: we need explicit --install-headers because of pip bug
 #   -> https://github.com/pypa/pip/pull/2421
@@ -35,7 +25,5 @@ git init
 python setup.py install
 cd -
 
-# finish preparing system-wide config
-sudo cp -rv "${VIRTUAL_ENV}"/share/* /usr/share/
-ln -s "${PWD}"/profiles/base /etc/portage/make.profile
-ln -s "${PWD}" /usr/portage
+# configure pkgcore
+sed -e "s^@path@^${PWD}^" "${0%/*}"/pkgcore.conf.in > ~/.pkgcore.conf

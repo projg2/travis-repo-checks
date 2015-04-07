@@ -6,12 +6,12 @@ NO_JOBS=${2}
 
 if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 	# simple whole-repo run
-	pkgcheck -r /usr/portage --reporter FancyReporter \
+	pkgcheck -r gentoo --reporter FancyReporter \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
 		--profile-disable-dev --profile-disable-exp
 elif [[ ${JOB} == global ]]; then
 	# global check part of split run
-	pkgcheck -r /usr/portage --reporter FancyReporter \
+	pkgcheck -r gentoo --reporter FancyReporter \
 		-c UnusedGlobalFlags -c UnusedLicense
 else
 	# keep the category scan silent, it's so loud...
@@ -27,7 +27,7 @@ else
 
 	set -- "${cats[@]}"
 	while [[ -n ${@} ]]; do
-		pkgcheck -r /usr/portage --reporter FancyReporter "${@:1:8}" \
+		pkgcheck -r gentoo --reporter FancyReporter "${@:1:8}" \
 			-d imlate -d unstable_only -d cleanup -d stale_unstable \
 			--profile-disable-dev --profile-disable-exp
 		shift 8 || break
