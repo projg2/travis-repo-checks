@@ -27,6 +27,7 @@ else
 
 	pkgcheck -r gentoo --reporter FancyReporter "${cats[@]}" \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
+		-d UnusedGlobalFlags -d UnusedLicense \
 		--profile-disable-dev --profile-disable-exp
 fi |& awk -f "$(dirname "${0}")"/parse-pcheck-output.awk
 
