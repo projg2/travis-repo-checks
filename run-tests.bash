@@ -18,7 +18,8 @@ else
 	set +x
 	cx=0
 	cats=()
-	for c in $(<profiles/categories); do
+	for c in $( cd metadata/md5-cache; du $(<../../profiles/categories) | sort -n -r | cut -d$'\t' -f2)
+	do
 		if [[ $(( cx++ % ${NO_JOBS} )) -eq ${JOB} ]]; then
 			cats+=( "${c}/*" )
 		fi
