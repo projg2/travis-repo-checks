@@ -1,7 +1,7 @@
 [gentoo]
 class=pkgcore.ebuild.repository.tree
 cache=cache:gentoo
-raw_repo=raw:gentoo
+repo_config=raw:gentoo
 
 [cache:gentoo]
 class=pkgcore.cache.flat_hash.md5_cache
