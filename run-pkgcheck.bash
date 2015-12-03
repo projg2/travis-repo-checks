@@ -6,13 +6,13 @@ NO_JOBS=${2}
 
 if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 	# simple whole-repo run
-	exec pkgcheck -r gentoo --reporter FancyReporter \
+	exec pkgcheck -r gentoo --reporter XmlReporter \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
 		-d deprecated \
 		--profile-disable-dev --profile-disable-exp
 elif [[ ${JOB} == global ]]; then
 	# global check part of split run
-	exec pkgcheck -r gentoo --reporter FancyReporter \
+	exec pkgcheck -r gentoo --reporter XmlReporter \
 		-c UnusedGlobalFlags -c UnusedLicense
 else
 	# keep the category scan silent, it's so loud...
@@ -27,7 +27,7 @@ else
 	done
 	set -x
 
-	exec pkgcheck -r gentoo --reporter FancyReporter "${cats[@]}" \
+	exec pkgcheck -r gentoo --reporter XmlReporter "${cats[@]}" \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
 		-d deprecated -d UnusedGlobalFlags -d UnusedLicense \
 		--profile-disable-dev --profile-disable-exp
