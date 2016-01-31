@@ -7,9 +7,9 @@ NO_JOBS=${2}
 if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 	# simple whole-repo run
 	exec pkgcheck -r gentoo --reporter XmlReporter \
-		-d imlate -d unstable_only -d cleanup -d stale_unstable \
+		ld imlate -d unstable_only -d cleanup -d stale_unstable \
 		-d deprecated \
-		--profile-disable-dev --profile-disable-exp
+		-p stable --profiles-disable-deprecated
 elif [[ ${JOB} == global ]]; then
 	# global check part of split run
 	exec pkgcheck -r gentoo --reporter XmlReporter \
@@ -30,5 +30,5 @@ else
 	exec pkgcheck -r gentoo --reporter XmlReporter "${cats[@]}" \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
 		-d deprecated -d UnusedGlobalFlags -d UnusedLicense \
-		--profile-disable-dev --profile-disable-exp
+		-p stable --profiles-disable-deprecated
 fi
