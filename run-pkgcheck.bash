@@ -7,7 +7,7 @@ NO_JOBS=${2}
 if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 	# simple whole-repo run
 	exec pkgcheck -r gentoo --reporter XmlReporter \
-		ld imlate -d unstable_only -d cleanup -d stale_unstable \
+		-d imlate -d unstable_only -d cleanup -d stale_unstable \
 		-d deprecated \
 		-p stable --profiles-disable-deprecated
 elif [[ ${JOB} == global ]]; then
