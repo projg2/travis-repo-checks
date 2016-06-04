@@ -13,7 +13,7 @@ if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 elif [[ ${JOB} == global ]]; then
 	# global check part of split run
 	exec pkgcheck -r gentoo --reporter XmlReporter \
-		-c UnusedGlobalFlags -c UnusedLicense
+		-c UnusedGlobalFlags -c UnusedLicense -c RepoProfilesReport
 else
 	# keep the category scan silent, it's so loud...
 	set +x
