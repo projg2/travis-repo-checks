@@ -13,7 +13,7 @@ if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 elif [[ ${JOB} == global ]]; then
 	# global check part of split run
 	exec pkgcheck -r gentoo --reporter XmlReporter \
-		-c UnusedGlobalFlags -c UnusedLicense -c RepoProfilesReport
+		-c UnusedGlobalFlagsCheck -c UnusedLicenseCheck -c UnusedMirrorsCheck -c RepoProfilesReport
 else
 	# keep the category scan silent, it's so loud...
 	set +x
@@ -29,6 +29,7 @@ else
 
 	exec pkgcheck -r gentoo --reporter XmlReporter "${cats[@]}" \
 		-d imlate -d unstable_only -d cleanup -d stale_unstable \
-		-d deprecated -d UnusedGlobalFlags -d UnusedLicense \
+		-d deprecated -d UnusedGlobalFlagsCheck -d UnusedLicenseCheck \
+		-d UnusedMirrorsCheck -d RepoProfilesReport \
 		-p stable --profiles-disable-deprecated
 fi
