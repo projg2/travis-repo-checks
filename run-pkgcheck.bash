@@ -38,5 +38,5 @@ else
 
 	exec pkgcheck -r gentoo --reporter XmlReporter "${cats[@]}" \
 		-p stable --profiles-disable-deprecated \
-		"${SKIPPED_CHECKS[@]}"
+		-C non-repo "${SKIPPED_CHECKS[@]}"
 fi
