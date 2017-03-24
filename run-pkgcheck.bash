@@ -17,7 +17,7 @@ SKIPPED_CHECKS=(
 if [[ ! ${JOB} || ! ${NO_JOBS} ]]; then
 	# simple whole-repo run
 	exec pkgcheck -r gentoo --reporter XmlReporter \
-		-p stable --profiles-disable-deprecated \
+		-p stable \
 		"${SKIPPED_CHECKS[@]}"
 elif [[ ${JOB} == global ]]; then
 	# global check part of split run
